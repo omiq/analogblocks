@@ -8,9 +8,10 @@ def unpack_triple_nested(tn):
     [[[x1, y1]], [x2, y2]], ...] --> [(x1, y1), (x2, y2), ...]
     '''
     tuples = []
-    for dn in tn:
-        for sn in dn:
-            tuples.append((sn[0], sn[1]))
+    if tn:
+        for dn in tn:
+            for sn in dn:
+                tuples.append((sn[0], sn[1]))
     return tuples
 
 
@@ -73,6 +74,11 @@ for (name, lower, upper) in boundaries:
     # find the colors within the specified boundaries and apply
     # the mask
     mask = cv2.inRange(image, lower, upper)
+
+    # raw datas
+    print(cv2.findNonZero(mask))
+
+    # unpack
     points = unpack_triple_nested(cv2.findNonZero(mask))
     cen_x, cen_y = simple_centroid(points)
     color_tuples.append((name, cen_x, cen_y))
