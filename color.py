@@ -40,6 +40,9 @@ cap = cv2.VideoCapture(0)
 # get a frame of video
 ret, image = cap.read()
 
+# did that work?
+print(ret)
+
 # define the list of boundaries
 boundaries = [
     ("red", [17, 15, 100], [50, 56, 200]), #red
