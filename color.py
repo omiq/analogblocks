@@ -11,7 +11,8 @@ boundaries = [
     ([17, 15, 100], [50, 56, 200]), #red
     ([100, 0, 0], [255, 50, 50]),   #blue
     ([25, 146, 190], [62, 174, 250]), #yellow
-    ([0, 60, 0], [50, 255, 50]) #green
+    ([0, 60, 0], [50, 255, 50]), #green
+    ([20, 50, 100], [50, 100, 255]) #orange
 ]
 
 # loop over the boundaries
@@ -23,6 +24,8 @@ for (lower, upper) in boundaries:
     # find the colors within the specified boundaries and apply
     # the mask
     mask = cv2.inRange(image, lower, upper)
+    points = cv2.findNonZero(mask)
+    print(points)
     output = cv2.bitwise_and(image, image, mask=mask)
 
     # show the images
