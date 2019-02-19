@@ -4,6 +4,8 @@ import os
 
 app = Flask(__name__)
 
+app_dir = os.path.dirname(os.path.realpath(__file__))
+
 @app.route('/')
 def hello():
     return 'Use POST /changed with colors body in JSON'
@@ -19,10 +21,11 @@ def changed():
 block_content_cache = {}
 
 def get_block_content(name):
+    global app_dir
     global block_content_cache
     if name not in block_content_cache:
         try:
-            with open(f'blocks/{name}.txt', 'r') as fh:
+            with open(f'{app_dir}/blocks/{name}.txt', 'r') as fh:
                 content = fh.read()
                 content = content.replace('\r', '')
                 content = content.replace('\n', '')
@@ -50,6 +53,6 @@ def handle_color_spec(spec_colors):
 
 def enqueue_content_update(content):
     post_number = 4
-    cmd = f"wp post update {post_number} --post_content='{content}'"
+    cmd = f"""wpe wp "post update {post_number} --post_content='{content}'" """
     print(content)
     os.system(cmd)
