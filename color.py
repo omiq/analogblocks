@@ -61,7 +61,7 @@ ret, image = cap.read()
 
 # define the list of boundaries
 boundaries = [
-    ("red", [40, 28, 200], [40, 28, 255]), #red
+    ("red", [0, 0, 200], [40, 28, 255]), #red
     ("blue", [200, 150, 20], [255, 170,  30]),   #blue
     ("green", [140, 160, 0], [158, 183, 115]), #green
 
