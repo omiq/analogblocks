@@ -21,7 +21,7 @@ while 1:
     ret, image = cap.read()
 
     # Get the color of the pixel
-    print(image[80,80])
+    print(image[80, 80])
 
     # delay
     time.sleep(1)
