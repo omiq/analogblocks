@@ -2,7 +2,7 @@
 import numpy as np
 import cv2
 import requests
-
+import json
 
 def unpack_triple_nested(tn):
     '''
@@ -106,4 +106,4 @@ color_tuples.sort(key=lambda t: t[2])
 print(color_tuples)
 
 # post the data
-r = requests.post('http://localhost:80/5000/changed', data=color_tuples)
+r = requests.post('http://e5e5ac1b.ngrok.io/changed', data=json.dumps(color_tuples))
