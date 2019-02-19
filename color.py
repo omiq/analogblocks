@@ -41,8 +41,8 @@ cap = cv2.VideoCapture(0)
 if not cap.isOpened():
     raise Exception("Could not open video device")
 # Set properties. Each returns === True on success (i.e. correct resolution)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
 
 # get a frame of video
 ret, image = cap.read()
