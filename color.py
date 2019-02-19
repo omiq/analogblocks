@@ -56,9 +56,9 @@ cv2.waitKey(0)
 # define the list of boundaries
 boundaries = [
     ("red", [70, 60, 100], [150, 150, 255]), #red
-    ("blue", [100, 0, 0], [255, 50, 50]),   #blue
-    ("yellow", [25, 146, 190], [62, 174, 250]), #yellow
-    ("green", [0, 60, 0], [50, 255, 50]), #green
+    ("blue", [100, 0, 0], [255, 200, 80]),   #blue
+    ("yellow", [25, 146, 160], [200, 200, 185]), #yellow
+    ("green", [140, 160, 0], [50, 255, 50]), #green
     ("orange", [20, 50, 100], [50, 100, 255]) #orange
 ]
 
