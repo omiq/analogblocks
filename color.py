@@ -32,13 +32,12 @@ def simple_centroid(points):
 
 
 # load the image
-image = cv2.imread("blocks.jpg")
-
 # Webcamera no 0 is used to capture the frames
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(-1)
 
 # get a frame of video
 ret, image = cap.read()
+cv2.imshow('Webcam', image)
 
 # did that work?
 print(ret)
