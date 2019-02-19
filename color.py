@@ -33,7 +33,7 @@ def simple_centroid(points):
 
 # load the image
 # Webcamera no 0 is used to capture the frames
-cap = cv2.VideoCapture(-1)
+cap = cv2.VideoCapture(0)
 
 # get a frame of video
 ret, image = cap.read()
@@ -41,6 +41,8 @@ cv2.imshow('Webcam', image)
 
 # did that work?
 print(ret)
+
+cv2.waitKey(0)
 
 # define the list of boundaries
 boundaries = [
