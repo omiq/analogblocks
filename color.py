@@ -106,3 +106,4 @@ color_tuples.sort(key=lambda t: t[2])
 print(color_tuples)
 
 # post the data
+r = requests.post('host:port/5000/changed', data=color_tuples)
