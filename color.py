@@ -38,6 +38,7 @@ cap = cv2.VideoCapture(0)
 # get a frame of video
 ret, image = cap.read()
 cv2.imshow('Webcam', image)
+cv2.imwrite('test.png', image)
 
 # did that work?
 print(ret)
@@ -46,7 +47,7 @@ cv2.waitKey(0)
 
 # define the list of boundaries
 boundaries = [
-    ("red", [17, 15, 100], [50, 56, 200]), #red
+    ("red", [70, 60, 100], [150, 150, 255]), #red
     ("blue", [100, 0, 0], [255, 50, 50]),   #blue
     ("yellow", [25, 146, 190], [62, 174, 250]), #yellow
     ("green", [0, 60, 0], [50, 255, 50]), #green
