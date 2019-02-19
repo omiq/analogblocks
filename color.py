@@ -80,8 +80,10 @@ for (name, lower, upper) in boundaries:
 
     # unpack
     points = unpack_triple_nested(cv2.findNonZero(mask))
-    cen_x, cen_y = simple_centroid(points)
-    color_tuples.append((name, cen_x, cen_y))
+    centroid = simple_centroid(points)
+    if centroid is not None:  # None color was not found
+        cen_x, cen_y = centroid
+        color_tuples.append((name, cen_x, cen_y))
 
     # show the images
     output = cv2.bitwise_and(image, image, mask=mask)
