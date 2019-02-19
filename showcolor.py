@@ -21,7 +21,11 @@ while 1:
     ret, image = cap.read()
 
     # Get the color of the pixel
-    print(image[80, 80])
+    b, g, r = (image[60, 60])
+    b2, g2, r2 = (image[80, 80])
+    b3, g3, r3 = (image[100, 100])
+    print("[{},{},{}]".format(int((b+b2+b3)/3), int((g+g2+g3)/3), int((r+r2+r3)/3)))
 
     # delay
     time.sleep(1)
+
