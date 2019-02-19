@@ -34,6 +34,12 @@ def simple_centroid(points):
 # load the image
 image = cv2.imread("blocks.jpg")
 
+# Webcamera no 0 is used to capture the frames
+cap = cv2.VideoCapture(0)
+
+# get a frame of video
+ret, image = cap.read()
+
 # define the list of boundaries
 boundaries = [
     ("red", [17, 15, 100], [50, 56, 200]), #red
@@ -64,7 +70,10 @@ for (name, lower, upper) in boundaries:
     #cv2.imshow("images", np.hstack([image, output]))
     #cv2.waitKey(0)
 
+# release back to os
+cap.release()
 cv2.destroyAllWindows()
 
+# output the geometry
 color_tuples.sort(key=lambda t: t[2])
 print(color_tuples)
