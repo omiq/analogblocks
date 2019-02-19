@@ -1,0 +1,1 @@
+<!-- wp:table {"className":"is-style-stripes"} --> <table class="wp-block-table is-style-stripes"><tbody><tr><td>Column A</td><td>Column B</td></tr><tr><td>value 1<br></td><td>value 2</td></tr><tr><td>value 3</td><td>value 4</td></tr></tbody></table> <!-- /wp:table -->  

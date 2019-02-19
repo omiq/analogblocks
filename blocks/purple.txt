@@ -1,0 +1,1 @@
+<!-- wp:gallery {"ids":[5,19,28]} --> <ul class="wp-block-gallery columns-3 is-cropped"><li class="blocks-gallery-item"><figure><img src="http://demosite123.wpengine.test/wp-content/uploads/2019/02/Gus.jpg" alt="" data-id="5" data-link="http://demosite123.wpengine.test/?attachment_id=5" 

@@ -1,0 +1,1 @@
+<!-- wp:image {"id":30} --> <figure class="wp-block-image"><img src="http://demosite123.wpengine.test/wp-content/uploads/2019/02/milo-1024x615.png" alt="" class="wp-image-30"/></figure> <!-- /wp:image -->  
