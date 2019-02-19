@@ -35,6 +35,13 @@ def simple_centroid(points):
 # Webcamera no 0 is used to capture the frames
 cap = cv2.VideoCapture(0)
 
+# success?
+if not cap.isOpened():
+    raise Exception("Could not open video device")
+# Set properties. Each returns === True on success (i.e. correct resolution)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
+
 # get a frame of video
 ret, image = cap.read()
 cv2.imshow('Webcam', image)
@@ -60,8 +67,8 @@ color_tuples = []
 
 for (name, lower, upper) in boundaries:
     # create NumPy arrays from the boundaries
-    lower = np.array(lower, dtype = "uint8")
-    upper = np.array(upper, dtype = "uint8")
+    lower = np.array(lower, dtype="uint8")
+    upper = np.array(upper, dtype="uint8")
 
     # find the colors within the specified boundaries and apply
     # the mask
@@ -71,9 +78,9 @@ for (name, lower, upper) in boundaries:
     color_tuples.append((name, cen_x, cen_y))
 
     # show the images
-    # output = cv2.bitwise_and(image, image, mask=mask)
-    #cv2.imshow("images", np.hstack([image, output]))
-    #cv2.waitKey(0)
+    output = cv2.bitwise_and(image, image, mask=mask)
+    cv2.imshow("images", np.hstack([image, output]))
+    cv2.waitKey(0)
 
 # release back to os
 cap.release()
