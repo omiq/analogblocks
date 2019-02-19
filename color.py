@@ -57,7 +57,7 @@ ret, image = cap.read()
 # did that work?
 #print(ret)
 
-cv2.waitKey(0)
+#cv2.waitKey(0)
 
 # define the list of boundaries
 boundaries = [
@@ -106,4 +106,4 @@ color_tuples.sort(key=lambda t: t[2])
 print(color_tuples)
 
 # post the data
-r = requests.post('http://e5e5ac1b.ngrok.io/changed', data=json.dumps(color_tuples))
+r = requests.post('http://localhost:5000/changed', data=json.dumps(color_tuples))
