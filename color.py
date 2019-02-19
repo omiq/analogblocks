@@ -1,6 +1,7 @@
 # import the necessary packages
 import numpy as np
 import cv2
+import requests
 
 
 def unpack_triple_nested(tn):
@@ -45,13 +46,16 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
 
 # get a frame of video
 ret, image = cap.read()
-cv2.imshow('Webcam', image)
+
+# display and save the image
+#cv2.imshow('Webcam', image)
 #cv2.imwrite('test.png', image)
 
-print(image[80,80])
+# Get the color of the pixel
+#print(image[80,80])
 
 # did that work?
-print(ret)
+#print(ret)
 
 cv2.waitKey(0)
 
@@ -64,16 +68,6 @@ boundaries = [
     ("orange", [20, 50, 100], [125, 148, 196]), #orange
     ("purple", [148,  59,  35], [255, 127, 108]) #purple
 ]
-
-'''    
-Red [113, 113, 222]
-Blue [255, 135,  29]
-Green [158, 183, 115]
-Orange [125, 148, 196]
-yellow [170, 172, 165]
-Purple [255, 127, 108]
-'''
-
 
 # loop over the boundaries
 
@@ -89,7 +83,7 @@ for (name, lower, upper) in boundaries:
     mask = cv2.inRange(image, lower, upper)
 
     # raw datas
-    print(cv2.findNonZero(mask))
+    #print(cv2.findNonZero(mask))
 
     # unpack
     points = unpack_triple_nested(cv2.findNonZero(mask))
@@ -100,8 +94,8 @@ for (name, lower, upper) in boundaries:
 
     # show the images
     output = cv2.bitwise_and(image, image, mask=mask)
-    cv2.imshow("images", np.hstack([image, output]))
-    cv2.waitKey(0)
+    #cv2.imshow("images", np.hstack([image, output]))
+    #cv2.waitKey(0)
 
 # release back to os
 cap.release()
@@ -110,3 +104,5 @@ cv2.destroyAllWindows()
 # output the geometry
 color_tuples.sort(key=lambda t: t[2])
 print(color_tuples)
+
+# post the data
