@@ -8,7 +8,7 @@ def unpack_triple_nested(tn):
     [[[x1, y1]], [x2, y2]], ...] --> [(x1, y1), (x2, y2), ...]
     '''
     tuples = []
-    if tn:
+    if tn is not None:
         for dn in tn:
             for sn in dn:
                 tuples.append((sn[0], sn[1]))
