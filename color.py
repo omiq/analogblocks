@@ -61,13 +61,13 @@ ret, image = cap.read()
 
 # define the list of boundaries
 boundaries = [
-    ("red", [0, 0, 86], [0, 1, 96]), #red
+    ("red", [43,42,138], [69,53,142]), #red
     ("blue", [124, 55,  7], [170, 91, 14]),   #blue
-    ("green", [77, 86, 42], [92, 108, 54]), #green
+    ("green", [65,76,36], [87,92,62]), #green
     ("yellow", [11, 131, 140], [31, 177, 182]),
     ("orange", [0, 103, 220], [0, 115,  235]),
     ("pink", [65, 0, 141], [85, 0, 177]),
-    ("purple", [139, 23, 40], [166, 73, 76]),
+    ("purple", [80,43,45], [89,58,56]),
 ]
 
 '''
@@ -111,3 +111,4 @@ print(color_tuples)
 
 # post the data
 r = requests.post('http://localhost:5000/changed', data=json.dumps(color_tuples))
+#r = requests.post('http://demosite123.wpengine.com.test/changed', data=json.dumps(color_tuples))

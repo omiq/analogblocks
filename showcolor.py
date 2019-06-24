@@ -13,19 +13,24 @@ cap = cv2.VideoCapture(0)
 if not cap.isOpened():
     raise Exception("Could not open video device")
 # Set properties. Each returns === True on success (i.e. correct resolution)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 160)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 100)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 100)
+ret, image = cap.read()
 
 while 1:
     # get a frame of video
     ret, image = cap.read()
+    cv2.rectangle(image, (60, 60), (95, 95), (0, 255, 0), 5)
+    cv2.imshow('Webcam', image)
+    cv2.waitKey()
 
     # Get the color of the pixel
-    b, g, r = (image[75, 75])
-    b2, g2, r2 = (image[80, 80])
-    b3, g3, r3 = (image[85, 85])
-    print("[{},{},{}]".format(int((b+b2+b3)/3), int((g+g2+g3)/3), int((r+r2+r3)/3)))
+    b, g, r = (image[65, 65])
+    b2, g2, r2 = (image[70, 70])
+    b3, g3, r3 = (image[90, 90])
 
-    # delay
-    time.sleep(1)
+    print("\n\n[{},{},{}]".format(int(b), int(g), int(r)))
+    print("[{},{},{}]".format(int(b2), int(g2), int(r2)))
+    print("[{},{},{}]".format(int(b3), int(g3), int(r3)))
+
 
