@@ -1,1 +1,3 @@
-<!-- wp:atomic-blocks/ab-testimonial {"testimonialImgID":101} --> <div style="background-color:#f2f2f2;color:#32373c" class="wp-block-atomic-blocks-ab-testimonial left-aligned ab-has-avatar ab-font-size-18 ab-block-testimonial"><div class="ab-testimonial-text"><p>This demo is amazing!</p></div><div class="ab-testimonial-info"><div class="ab-testimonial-avatar-wrap"><div class="ab-testimonial-image-wrap"><img class="ab-testimonial-avatar" src="http://demosite123.wpengine.test/wp-content/uploads/2019/02/immi.jpg" alt="avatar"/></div></div><h2 class="ab-testimonial-name" style="color:#32373c">Fido</h2><small class="ab-testimonial-title" style="color:#32373c">Dog</small></div></div> <!-- /wp:atomic-blocks/ab-testimonial -->
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><p>This is amazing!</p><cite>Everybody</cite></blockquote>
+<!-- /wp:quote -->

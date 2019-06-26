@@ -3,6 +3,7 @@ import numpy as np
 import cv2
 import requests
 import json
+import time
 
 def unpack_triple_nested(tn):
     '''
@@ -33,19 +34,9 @@ def simple_centroid(points):
         return None
 
 
-# load the image
-# Webcamera no 0 is used to capture the frames
-cap = cv2.VideoCapture(0)
 
-# success?
-if not cap.isOpened():
-    raise Exception("Could not open video device")
-# Set properties. Each returns === True on success (i.e. correct resolution)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
 
-# get a frame of video
-ret, image = cap.read()
+
 
 # display and save the image
 #cv2.imshow('Webcam', image)
@@ -66,7 +57,7 @@ boundaries = [
     ("green", [65,76,36], [87,92,62]), #green
     ("yellow", [11, 131, 140], [31, 177, 182]),
     ("orange", [0, 103, 220], [0, 115,  235]),
-    ("pink", [65, 0, 141], [85, 0, 177]),
+    ("pink", [82,56,154], [89,61,159]),
     ("purple", [80,43,45], [89,58,56]),
 ]
 
@@ -75,40 +66,60 @@ boundaries = [
 
 # loop over the boundaries
 
-color_tuples = []
 
-for (name, lower, upper) in boundaries:
-    # create NumPy arrays from the boundaries
-    lower = np.array(lower, dtype="uint8")
-    upper = np.array(upper, dtype="uint8")
 
-    # find the colors within the specified boundaries and apply
-    # the mask
-    mask = cv2.inRange(image, lower, upper)
+while 1:
 
-    # raw datas
-    #print(cv2.findNonZero(mask))
+    # load the image
+    # Webcamera no 0 is used to capture the frames
+    cap = cv2.VideoCapture(0)
 
-    # unpack
-    points = unpack_triple_nested(cv2.findNonZero(mask))
-    centroid = simple_centroid(points)
-    if centroid is not None:  # None color was not found
-        cen_x, cen_y = centroid
-        color_tuples.append((name, cen_x, cen_y))
+    # success?
+    if not cap.isOpened():
+        raise Exception("Could not open video device")
+    # Set properties. Each returns === True on success (i.e. correct resolution)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
 
-    # show the images
-    output = cv2.bitwise_and(image, image, mask=mask)
-    #cv2.imshow("images", np.hstack([image, output]))
-    #cv2.waitKey(0)
+    color_tuples = []
 
-# release back to os
-cap.release()
-cv2.destroyAllWindows()
+    # get a frame of video
+    ret, image = cap.read()
 
-# output the geometry
-color_tuples.sort(key=lambda t: t[2])
-print(color_tuples)
+    for (name, lower, upper) in boundaries:
+        # create NumPy arrays from the boundaries
+        lower = np.array(lower, dtype="uint8")
+        upper = np.array(upper, dtype="uint8")
 
-# post the data
-r = requests.post('http://localhost:5000/changed', data=json.dumps(color_tuples))
+        # find the colors within the specified boundaries and apply
+        # the mask
+        mask = cv2.inRange(image, lower, upper)
+
+        # raw datas
+        #print(cv2.findNonZero(mask))
+
+        # unpack
+        points = unpack_triple_nested(cv2.findNonZero(mask))
+        centroid = simple_centroid(points)
+        if centroid is not None:  # None color was not found
+            cen_x, cen_y = centroid
+            color_tuples.append((name, cen_x, cen_y))
+
+        # show the images
+        output = cv2.bitwise_and(image, image, mask=mask)
+        #cv2.imshow("images", np.hstack([image, output]))
+        #cv2.waitKey(0)
+
+    # release back to os
+    cap.release()
+    cv2.destroyAllWindows()
+
+    # output the geometry
+    color_tuples.sort(key=lambda t: t[2])
+    print(color_tuples)
+
+    # post the data
+    r = requests.post('http://localhost:5000/changed', data=json.dumps(color_tuples))
+    time.sleep(5)
+
 #r = requests.post('http://demosite123.wpengine.com.test/changed', data=json.dumps(color_tuples))
